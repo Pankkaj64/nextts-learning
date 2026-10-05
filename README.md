@@ -6,7 +6,7 @@ A hands-on learning repository with two small projects side by side. The root is
 
 **Next.js app (root)**
 - File-based routing with the App Router: `/`, `/users` and `/users/new`
-- Async server component on `/users` that fetches users from the JSONPlaceholder API with `cache: "no-store"` (rendered fresh on every request)
+- Async server component on `/users` that fetches users from the JSONPlaceholder API with `cache: "no-store"` (rendered fresh on every request) and shows them in a name / email table
 - Client component (`"use client"`) with an event handler (`AddToCart`) nested inside a server component (`ProductCard`)
 - Component-scoped styling with CSS Modules, plus Tailwind CSS v4 and the Geist font via `next/font`
 
@@ -28,9 +28,9 @@ A hands-on learning repository with two small projects side by side. The root is
 ```
 .
 ├── app/                        # Next.js App Router
-│   ├── layout.tsx              # Root layout (Geist fonts, global styles)
+│   ├── layout.tsx              # Root layout (Geist fonts, global styles, page metadata)
 │   ├── page.tsx                # Home page: link to /users + ProductCard
-│   ├── users/page.tsx          # Server component fetching users from JSONPlaceholder
+│   ├── users/page.tsx          # Server component rendering JSONPlaceholder users as a table
 │   ├── users/new/page.tsx      # Placeholder "new user" route
 │   └── components/
 │       ├── AddToCart.tsx       # Client component with an onClick handler
@@ -76,7 +76,7 @@ pip install -r requirements.txt
 python main.py             # http://127.0.0.1:5000
 ```
 
-On start-up the app creates the SQLite database (`instance/mydatabase.db`) if it does not exist.
+`flask --app main run` works too. On start-up the app creates the SQLite database (`backend/instance/mydatabase.db`) and its tables if they do not exist. The database file is gitignored, so every clone starts with an empty contact list.
 
 ### Frontend (React + Vite)
 

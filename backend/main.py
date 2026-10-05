@@ -2,7 +2,10 @@ from flask import request, jsonify
 from models import Contact
 from config import db, app
 
-
+# Create the SQLite database and tables on startup (no-op if they already exist),
+# whether the app is started with `python main.py` or `flask --app main run`.
+with app.app_context():
+    db.create_all()
 
 
 @app.route("/contacts", methods=['GET'])
@@ -65,7 +68,4 @@ def delete_contact(user_id):
 
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-
     app.run(debug=True)
